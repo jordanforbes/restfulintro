@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Edit</h1>
+        <form action="/shows/{{this_show.id}}/update" method = "post">
+            {% csrf_token %}
+            <p>TV Show: </p>
+            <p>Title: <input type="text" name="titleOfShow" value={{this_show.title}}>
+            </p>
+            <p>Network: <input type="text" name="networkName" value={{this_show.network}}></p>
+            <p>Description: <textarea name="showDesc" id="" cols="30" rows="10">{{this_show.description}}</textarea></p>
+            <p>Release Date: <input type="date" name="relDate" id="" value={{this_show.release|date:'Y-m-d'}}></p>
+            <input type="submit" value="update">
+        </form>
+    </div>
+</body>
+</html>

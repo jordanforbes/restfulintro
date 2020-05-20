@@ -9,7 +9,7 @@
     Hello World
 
     {% for show in allshows %}
-        <p>{{ show.title }} <a href="/shows/{{show.id}}">View</a></p>
+        <p>{{ show.title }} <a href="/shows/{{show.id}}">View</a> <a href="/shows/{{show.id}}/edit">Edit</a> <a href="/shows/{{show.id}}/destroy">Delete</a></p>
     {% endfor %}
 </body>
 </html>
