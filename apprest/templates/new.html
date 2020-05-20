@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Create</h1>
+        <form action="/shows/create" method = "post">
+            {% csrf_token %}
+            <p>TV Show: <input type="text" name="showTitle">
+            </p>
+            <p>Network: <input type="text" name="networkName"></p>
+            <p>Description: <textarea name="showDesc" id="" cols="30" rows="10"></textarea></p>
+            <p>Release Date: <input type="date" name="relDate" id=""></p>
+            <input type="submit" value="submit">
+        </form>
+    </div>
+</body>
+</html>
