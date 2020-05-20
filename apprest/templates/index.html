@@ -3,13 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <title>Document</title>
 </head>
 <body>
-    Hello World
-
-    {% for show in allshows %}
-        <p>{{ show.title }} <a href="/shows/{{show.id}}">View</a> <a href="/shows/{{show.id}}/edit">Edit</a> <a href="/shows/{{show.id}}/destroy">Delete</a></p>
-    {% endfor %}
+    <div class="container">
+        <h1>TV Shows</h1>
+        <a href="/shows/new">Add Show</a>
+        <table class="table table-striped">
+            <tr>
+                <th>Title</th>
+                <th>View</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+       
+        {% for show in allshows %}
+            <tr>
+                <td>{{show.title}}</td>
+                <td><a href="/shows/{{show.id}}">View</a></td>
+                <td><a href="/shows/{{show.id}}/edit">Edit</a></td>
+                <td><a href="/shows/{{show.id}}/destroy">Delete</a></p></td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
 </body>
 </html>

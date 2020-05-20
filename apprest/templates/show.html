@@ -3,16 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <title>Document</title>
 </head>
 <body>
-    
-    <h1>{{this_show.title}}</h1>
+    <div class="container">
+        <h1>{{this_show.title}}</h1>
 
-    <ul>
-        <li>{{this_show.network}}</li>
-        <li>{{this_show.description}}</li>
-        <li>{{this_show.release}}</li>
-    </ul>
+        <ul>
+            <li>Network: {{this_show.network}}</li>
+            <li>Description: {{this_show.description}}</li>
+            <li>Release Date: {{this_show.release}}</li>
+        </ul>
+        <a href="/">Back to Index</a>
+    </div>
 </body>
 </html>

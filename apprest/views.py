@@ -49,4 +49,5 @@ def update(request, show_id):
     return redirect('/') 
 
 def destroy(request, show_id):
-    pass 
+    TVShow.objects.get(id=show_id).delete()
+    return redirect('/')
