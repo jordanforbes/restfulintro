@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
-from .models import TVShow
+from django.contrib import messages
+
+from .models import TVShow, TVManager
 
 def index(request):
     context = {
@@ -15,10 +17,19 @@ def new(request):
 
 def create(request):
     print(request.POST)
-    TVShow.objects.create(title = request.POST['showTitle'],
-                          network = request.POST['networkName'],
-                          description = request.POST['showDesc'],
-                          release = request.POST['relDate'])
+    errors = TVShow.objects.basic_validator(request.POST)
+    
+    print('errors',errors)
+    if len(errors) > 0:
+        for key, val in errors.items():
+            messages.error(request, val)
+        print('failed to update')
+        return redirect('/shows/new')
+    else:
+        TVShow.objects.create(title = request.POST['titleOfShow'],
+                            network = request.POST['networkName'],
+                            description = request.POST['showDesc'],
+                            release = request.POST['relDate'])
     return redirect('/')
 
 def show(request, show_id): 
@@ -41,11 +52,24 @@ def edit(request, show_id):
 
 def update(request, show_id):
     thisShow = TVShow.objects.get(id=show_id)
-    thisShow.title = request.POST['titleOfShow']
-    thisShow.network = request.POST['networkName']
-    thisShow.release = request.POST['relDate']
-    thisShow.description = request.POST['showDesc']
-    thisShow.save()
+    
+    
+    errors = TVShow.objects.basic_validator(request.POST)
+    
+    print('errors',errors)
+    if len(errors) > 0:
+        for key, val in errors.items():
+            messages.error(request, val)
+        print('failed to update')
+        return redirect('/shows/'+show_id+'/edit')
+    else:
+        thisShow.title = request.POST['titleOfShow']
+        thisShow.network = request.POST['networkName']
+        thisShow.release = request.POST['relDate']
+        thisShow.description = request.POST['showDesc']
+        thisShow.save()
+        messages.success(request, "show updated!")
+        print('successfully updated!')
     return redirect('/') 
 
 def destroy(request, show_id):

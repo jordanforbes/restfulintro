@@ -5,13 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <title>Document</title>
+    <style>
+        .messages li{
+            color:red;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h1>Create</h1>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
         <form action="/shows/create" method = "post">
             {% csrf_token %}
-            <p>TV Show: <input type="text" name="showTitle">
+            <p>TV Show: <input type="text" name="titleOfShow">
             </p>
             <p>Network: <input type="text" name="networkName"></p>
             <p>Description: <textarea name="showDesc" id="" cols="30" rows="10"></textarea></p>
